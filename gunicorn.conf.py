@@ -179,7 +179,7 @@ tmp_upload_dir = None
 #       A string of "debug", "info", "warning", "error", "critical"
 #
 
-logfile='/var/log'
+#logfile='/var/log'
 errorlog = '-'
 loglevel = 'info'
 accesslog = '-'
