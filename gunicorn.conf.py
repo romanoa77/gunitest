@@ -93,10 +93,14 @@ backlog = 2048
 #
 
 workers = 2
-worker_class = 'sync'
+worker_class = 'gthread'
 worker_connections = 1000
 timeout = 30
 keepalive = 2
+
+#  thread -  number of threads per workers 
+
+thread=2
 
 #
 #   spew - Install a trace function that spews every line of Python
@@ -150,10 +154,13 @@ spew = False
 #
 
 daemon = False
+
+####### ENV VAR################
 raw_env = [
     'DJANGO_SECRET_KEY=something',
     'SPAM=eggs',
 ]
+################################
 pidfile = None
 umask = 0
 user = None
@@ -172,6 +179,7 @@ tmp_upload_dir = None
 #       A string of "debug", "info", "warning", "error", "critical"
 #
 
+logfile='/var/log'
 errorlog = '-'
 loglevel = 'info'
 accesslog = '-'
