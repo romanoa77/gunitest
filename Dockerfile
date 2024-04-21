@@ -2,6 +2,8 @@ FROM alpine:latest
 
 ### Env var and cmd line arguments####
 ARG srvd=/var/www
+ARG repo=https://github.com/romanoa77/repdepo
+ARG reponm=repdepo
 
 ENV PAYLOAD=test.py
 ENV PAYLOADNM=test
@@ -9,16 +11,26 @@ ENV PAYLOADNM=test
 ENV GREET="Hello from Gunicorn server!"
 ######################################
 
-### webserverver filesystem
+## webserverver filesystem
 RUN mkdir ${srvd}
-#####################################
+######################################
 
-RUN apk add py3-gunicorn  &&apk cache clean
+RUN apk add  git &&apk cache clean
 
-#RUN git clone ${repo}
+RUN apk add  py3-flask   &&apk cache clean
+RUN apk add  py3-gunicorn   &&apk cache clean
+
+
+RUN git clone ${repo}
+
+
 
 ADD gunicorn.conf.py /etc
-ADD ${PAYLOAD} init.py ${srvd}
+ADD  init.py ${srvd}
+
+RUN cp -r ${reponm}/${PAYLOAD} ${srvd}
+
+RUN cp -r ${reponm}/templates ${srvd}
 
 WORKDIR ${srvd}
 

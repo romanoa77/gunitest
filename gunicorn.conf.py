@@ -96,11 +96,11 @@ backlog = 2048
 #       A positive integer. Generally set in the 1-5 seconds range.
 #
 
-workers = 2
+workers = 1
 worker_class = 'gthread'
 worker_connections = 1000
 timeout = 30
-keepalive = 2
+keepalive = 4
 
 #  thread -  number of threads per workers 
 
