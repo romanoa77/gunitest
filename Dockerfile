@@ -2,7 +2,11 @@ FROM alpine:latest
 
 ### Env var and cmd line arguments####
 ARG srvd=/var/www
-ARG payload=test.py
+
+ENV PAYLOAD=test.py
+ENV PAYLOADNM=test
+
+ENV GREET="Hello from Gunicorn server!"
 ######################################
 
 ### webserverver filesystem
@@ -14,7 +18,7 @@ RUN apk add py3-gunicorn  &&apk cache clean
 #RUN git clone ${repo}
 
 ADD gunicorn.conf.py /etc
-ADD ${payload} init.py ${srvd}
+ADD ${PAYLOAD} init.py ${srvd}
 
 WORKDIR ${srvd}
 

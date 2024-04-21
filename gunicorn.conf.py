@@ -45,6 +45,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 #       range.
 #
 
+#We can pass environment variables defined in the dockerfile
+import os
+
+
 bind = '0.0.0.0:8080'
 backlog = 2048
 
@@ -229,7 +233,7 @@ def pre_exec(server):
 
 def when_ready(server):
     server.log.info("Server is ready. Spawning workers")
-
+    server.log.info(os.getenv('GREET')) 
 def worker_int(worker):
     worker.log.info("worker received INT or QUIT signal")
 
